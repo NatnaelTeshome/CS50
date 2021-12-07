@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Oops! Error
+{% endblock %}
+
+{% block body %}
+<div class="alert-container">
+    <div class="alert alert-danger">
+        <strong>{{ message }} Please go back and resubmit the form.</strong>
+    </div>
+</div>
+{% endblock %}

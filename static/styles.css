@@ -1,0 +1,209 @@
+* 
+{
+  margin: 0px;
+  padding: 0px;  
+}
+
+body
+{
+    background-color: gray;
+}
+
+nav
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    background-color:cadetblue;
+    font-weight: bold;
+}
+
+#nav-name
+{
+    color:lightgray;
+}
+
+nav .links 
+{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+}
+
+nav .links a
+{
+    padding: 25px;    
+}
+ 
+a {
+    color:lightgray;
+}
+
+#nav-name a:hover 
+{
+    color:lightgray;
+    text-decoration: none;
+}
+
+nav .links a:hover
+{
+    background-color: lightgray;
+    color: cadetblue;
+}
+
+#bars
+{
+    position: absolute;
+    color: lightgray;  
+    display: none;
+}
+
+.custom-form
+{
+    margin: 30px auto;
+    width: 45vw;
+    padding: 20px;
+    background-color: cadetblue;
+    border-radius: 3%;
+}
+
+.container
+{
+    background-color: cadetblue;
+    width: 50vw;
+    min-height: 60vh;
+    position: relative;
+    margin: 5% auto;
+    border-radius: 5%;
+    overflow: hidden;
+}
+
+.container .form
+{
+    width: 78%;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    margin-right: 10%;
+}
+
+.container .form input, select
+{
+    width: 100%;
+    margin: 10px auto;
+    padding: 8px;
+    border-radius: 10%;
+    background-color: lightgray
+}
+
+.form-group input
+{
+    background-color: lightgray;
+}
+
+
+.container .form h2
+{
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15%;
+}
+
+button 
+{
+    padding: 10px;
+    margin: 0 15px;
+    background-color: gray;
+    width: 100px;
+    color: lightgray;
+}
+
+.button-container {
+    width: 100%;
+    margin: 30px auto;
+    text-align: center; 
+}
+
+.container #form2
+{
+    left: 900px;
+}
+
+.list-group-item
+{
+    background-color: lightgray;
+}
+
+.card-container
+{
+    margin: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: space-around;
+    text-align: center;
+}
+
+.card
+{
+    margin: 15px;
+}
+
+.alert 
+{
+    margin: 25px;
+    display: inline-block;
+}
+
+.alert-container
+{
+    text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+    nav
+    {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #nav-links{
+        display: none;
+    }
+    nav .links{
+        flex-direction: column;
+    }
+    nav .links a{
+        width: 100vw;
+        text-align: center;
+    }   
+    #bars {
+        display: block;
+        font-size: 25px;
+        right: 15px;
+        top: 0px;
+    }
+    .container
+    {
+        background-color: cadetblue;
+        width: 65vw;
+    }
+    .card-container{
+        display: block;
+        
+    }
+}
+
+@media screen and (max-height: 700px)
+{
+    .container
+    {
+        background-color: cadetblue;
+        height: 75vh;
+    }
+    .container button 
+    {
+        width: 70px;
+    }
+}

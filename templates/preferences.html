@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Preferences
+{% endblock %}
+
+{% block body %}
+    <form action="/preferences" method="post" class="container">
+      <div class="form" id="form1">
+        <h2>Academic Information</h2>
+        <input type="text" name="college" placeholder="College">
+        <input type="text" name="class_of" placeholder="Class of">
+        <input type="text" name="concentration" placeholder="Concentration">
+        <div class="button-container">
+          <button type="button" id="next" onclick="nextHandler()">Next</button>
+        </div>
+      </div>
+      <div class="form" id="form2">
+        <h2>Time and Place</h2>
+        <select name="daychoice">
+          <option selected disabled>Days</option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+          <option>Sunday</option>
+        </select>
+        <select name="time">
+          <option selected disabled>Time</option>
+          <option>6:00 AM - 9:00AM</option>
+          <option>9:00 AM - 12:00PM</option>
+          <option>12:00 PM - 3:00PM</option>
+          <option>3:00 PM - 6:00PM</option>
+          <option>6:00 PM - 9:00PM</option>
+          <option>9:00 PM - 12:00AM</option>
+          <option>12:00 AM - 3:00AM</option>
+          <option>3:00 AM - 6:00AM</option>
+        </select>
+        <select name="place">
+          <option selected disabled>Place</option>
+          <option>Indoor</option>
+          <option>Outdoor</option>
+        </select>
+        <div class="button-container">
+          <button type="button" id="back" onclick="backHandler()">Back</button>
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>    
+{% endblock %}

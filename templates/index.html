@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Home
+{% endblock %}
+
+{% block body %}
+    <div class="alert-container">
+        <form action="/preferences" method="post">
+          <input type="submit" value="Refresh my matches">
+        </form>
+    </div>
+    {% for result in results %}
+    <div class="card-container">
+        <div class="card" style="width: 18rem; background-color:cadetblue">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ result["firstname"] }} {{ result["lastname"] }}</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ result["college"] }}</li>
+                <li class="list-group-item">{{ result["concentration"] }}</li>
+                <li class="list-group-item">{{ result["class"] }}</li>
+              </ul>
+              <a href="#" class="card-link">Contact</a>
+            </div>
+      </div>
+    </div>
+    {% endfor %}
+{% endblock %}
