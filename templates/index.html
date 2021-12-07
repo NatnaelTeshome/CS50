@@ -5,7 +5,7 @@ Home
 {% endblock %}
 
 {% block body %}
-    <div class="alert-container">
+    <div id="refresh-container">
         <form action="/preferences" method="post">
           <input type="submit" value="Refresh my matches">
         </form>
@@ -13,7 +13,6 @@ Home
     {% for result in results %}
     <div class="card-container">
         <div class="card" style="width: 18rem; background-color:cadetblue">
-            <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{ result["firstname"] }} {{ result["lastname"] }}</h5>
               <ul class="list-group list-group-flush">

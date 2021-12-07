@@ -162,6 +162,13 @@ button
     text-align: center;
 }
 
+#refresh-container
+{
+    text-align: center;
+    margin: 10px;
+}
+
+
 @media screen and (max-width: 700px) {
     nav
     {

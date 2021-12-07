@@ -3,12 +3,23 @@ from flask_session import Session
 from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
 from functools import wraps
+from random import randint
+from flask_mail import *
 
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+mail = Mail(app)
+app.config["MAIL_SERVER"]='smtp.gmail.com'  
+app.config["MAIL_PORT"] = 465     
+app.config["MAIL_USERNAME"] = 'studybuddycs50@gmail.com'  
+app.config['MAIL_PASSWORD'] = 'Study2///'  
+app.config['MAIL_USE_TLS'] = False  
+app.config['MAIL_USE_SSL'] = True  
+mail = Mail(app)  
+code = randint(000000,999999)
 
 db = SQL("sqlite:///cs50.db")
 
@@ -25,7 +36,7 @@ def login_required(f):
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
+    return redirect("/login")
     
 
 @app.route("/")
@@ -60,7 +71,6 @@ def login():
 @login_required
 def preferences():
     if request.method == "POST":
-        print("has reached here 1 ")
         weights = [1.6, 0.8, 1.6, 1, 1, 0.8]
         criteria = ["college", "concentration", "class", "daychoice", "time", "place"]
         matches_count = {}
@@ -68,15 +78,12 @@ def preferences():
         user = db.execute(f"SELECT * FROM users WHERE id = {user_id}")[0]
         college = request.form.get("college") or user["college"]
         concentration = request.form.get("concentration") or user["concentration"]
-        print("has reached here 2")
         class_of = request.form.get("class_of") or user["class"]
-        print("has reached here 3")
         daychoice = request.form.get("daychoice") or user["daychoice"]
         time = request.form.get("time") or user["time"]
         place = request.form.get("place") or user["place"]
         user_response = [college, concentration, class_of, daychoice, time, place]
         db.execute(f"UPDATE users SET college = '{college}', class = '{class_of}', concentration = '{concentration}', daychoice = '{daychoice}', time = '{time}', place = '{place}' WHERE id = {user_id}")
-        print("has reached here 4")
         for i in range(2):
             match = db.execute(f"SELECT id FROM users WHERE id != {user_id} AND {criteria[i]} LIKE '%{user_response[i]}%'")
             print(match)
@@ -145,3 +152,36 @@ def signup():
         session["id"] = rows[0]["id"]
         return redirect("/")
     return render_template("signup.html")
+
+
+
+@app.route("/verify", methods=["GET", "POST"])
+def verify():
+    if request.method == "POST":
+        email = request.form.get("email")
+        msg = Message('Code',sender = 'studybuddycs50@gmail.com', recipients = [email]) 
+        msg.body = str(code)
+        mail.send(msg)
+        return render_template("validateemail.html")
+    return render_template("verify.html") 
+
+
+@app.route("/validate", methods=["GET", "POST"])
+def validate():
+    if request.method == "POST":
+        user_code = request.form.get("code")  
+        if code == int(user_code):
+            return render_template("resetpassword.html")
+        else:
+            return render_template("error.html", message="The email is invalid!")
+    return render_template("validateemail.html")
+
+
+@app.route("/resetpassword", methods=["GET", "POST"])
+def resetpassword():
+    if request.method == "POST":
+        user_id = session["id"]
+        password = request.form.get("password")
+        password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)        
+        db.execute(f"UPDATE users SET password = '{password}' WHERE id = {user_id}")
+    return render_template("resetpassword.html")

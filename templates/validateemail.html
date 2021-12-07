@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Enter Code
+{% endblock %}
+
+{% block body%}
+    <form action="/validate" method="post" class="custom-form">
+      <div class="form-group">
+        <label for="code">Enter the 6-digit code here</label>
+        <input type="text" class="form-control" id="code" name="code" placeholder="Eg: 000000">
+      </div>
+      <div class="button-container">
+      <button type="submit" class="btn">Check</button>
+      </div>
+      </form>    
+{% endblock %}

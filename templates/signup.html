@@ -7,6 +7,10 @@ Sign up
 {% block body%}
     <form action="/signup" method="post" class="custom-form">
       <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Eg: jnash@gmail.com">
+      </div>
+      <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Eg: johnnash">
       </div>
@@ -23,10 +27,6 @@ Sign up
         <input type="text" class="form-control" id="phone" name="phone" placeholder="Eg: 6171112222">
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="Eg: jnash@gmail.com">
-      </div>
-      <div class="form-group">
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Make sure it has at least one uppercase letter">
       </div>
@@ -37,5 +37,6 @@ Sign up
       <div class="button-container">
       <button type="submit" class="btn">Sign up</button>
       </div>
-      </form>    
+      </form>
+          
 {% endblock %}
